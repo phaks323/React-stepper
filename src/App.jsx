@@ -4,7 +4,6 @@ import Personal from './ui/Personal'
 import Social from './ui/Social'
 import Finish from './ui/Finish'
 import "./index.css";
-import ProgressBar from "@ramonak/react-progress-bar";
 
 const App = () => {
 
@@ -34,7 +33,6 @@ const App = () => {
       
   )
 }
-
 
 export default App;
 
