@@ -53,27 +53,27 @@ return (
           {
               questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>
               <div>
-                  <input type="radio" id="gender" name="gender" value={q}/>{q}
+                  <input type="radio" id="gender" name="gender" value={q} onChange={(e) => setName(e.target.value)}/>{q}
               </div>)
           }
             
           {
               questiontype[tabContent]  == 'Date'  && 
               <div>
-              <label for="date">Date of Birth:</label>
-              <input type="date" id="date" name="date"></input>
+              <label htmlFor="date">Date of Birth:</label>
+              <input type="date" id="date" name="date" onChange={(e) => setName(e.target.value)}></input>
               </div>
           }
 
           {
               questiontype[tabContent]  == 'Select'  &&
               <div className='tabsContent'>
-                  <label for="category">Choose a category:</label>
+                  <label htmlFor="category">Choose a category:</label>
                   <select name="category" value={questions[tabContent]}>
                       {
                           questionoptions[tabContent].split(",").map((e, key) => 
                               {
-                              return <option key={key} value={e}>{e}</option>;
+                              return <option key={key} value={e}onChange={(e) => setName(e.target.value)}>{e}</option>;
                               }
                       )}
                   </select>
