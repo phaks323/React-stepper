@@ -1,7 +1,6 @@
 import React, { useState , useEffect} from 'react'
 import ProgressBar from "@ramonak/react-progress-bar";
 
-
 const Personal = ({setTab}) => {
     const [tabContent, setTabContent] = useState(0)
     const [qlen, setQlen] = useState()
