@@ -3,7 +3,9 @@ import Account from './ui/Account'
 import Personal from './ui/Personal'
 import Social from './ui/Social'
 import Finish from './ui/Finish'
+
 import "./index.css";
+import Portfolio from './ui/Portfolio';
 
 const App = () => {
 
@@ -26,6 +28,8 @@ const App = () => {
           {tab === 1 && <Social setTab={setTab} />}
           {tab === 2 && <Personal setTab={setTab} />}
           {tab === 3 && <Finish setTab={setTab} />}
+          {tab === 4 && <Portfolio setTab={setTab} />}
+
         </div>
     </div>
 

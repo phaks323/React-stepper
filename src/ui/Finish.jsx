@@ -8,6 +8,7 @@ import {
   import "react-country-state-city/dist/react-country-state-city.css";
   
   function Finish({setTab}) {
+    const [tabContent, setTabContent] = useState(0)
     const [countryid, setCountryid] = useState(0);
     const [stateid, setstateid] = useState(0);
     return (
@@ -37,7 +38,7 @@ import {
           placeHolder="Select City"
         />
         <div className="footer">
-            <div>{<button onClick={() => {setTabContent(3)}}>Finish</button>}</div>
+            <div>{<button onClick={() => {setTab(4)}}>Finish</button>}</div>
         </div>
       </div>
       

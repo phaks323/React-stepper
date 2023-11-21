@@ -83,9 +83,8 @@ const Personal = ({setTab}) => {
         {tabContent === -1 && <Personal setTabContent={setTabContent(0)} />}
 
         <div className="footer">
-          <button onClick={() => setTabContent(tabContent +1)}>Go Next</button>
-          <div>{tabContent < questionslength && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress + (100/questionslength))}}>Go Back</button>}</div>
-          <div>{tabContent === questionslength-1 &&  <button onClick={() => {setTabContent(3), setProgres(progress - (100/questionslength))}}>Finish</button>}</div>
+          <button onClick={() => {setTabContent(tabContent +1),setProgres(progress + (100/questionslength))}}>Go Next</button>
+          <div>{tabContent < questionslength && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
         </div>
     </div>
   )
