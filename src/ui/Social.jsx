@@ -1,12 +1,13 @@
 import React, { useState , useEffect} from 'react'
 import ProgressBar from "@ramonak/react-progress-bar";
 
+
 const Social = ({setTab}) => {
   const [tabContent, setTabContent] = useState(0)
-  const [qlen, setQlen] = useState()
-  const [qs, setQs] = useState("")
-  const [qtypes, setQtypes] = useState("")
-  const [qoptions, setQoptions] = useState("")
+  const [questionslength, setQlen] = useState()
+  const [questions, setQs] = useState("")
+  const [questiontype, setQtypes] = useState("")
+  const [questionoptions, setQoptions] = useState("")
   const [progress, setProgres] = useState(0)
        
   useEffect(() => {
@@ -19,18 +20,18 @@ const Social = ({setTab}) => {
 
           var ques=[];
           var qtype=[];
-          var qoptions = []
+          var questionoptions = []
 
           for(var i=0;i<data.data.length;i++){
               ques.push(data.data[i].attributes.question);
               qtype.push(data.data[i].attributes.type);
-              qoptions.push(data.data[i].attributes.option);
+              questionoptions.push(data.data[i].attributes.option);
           }
           setQs(ques)
           setQtypes(qtype)
           setQoptions(qtype)
 
-          console.log(qoptions);
+          console.log(questionoptions);
 
           return data
       }
@@ -41,23 +42,23 @@ return (
        <ProgressBar completed={progress} label='ccc' />
           
           {
-              qtypes[tabContent] == 'Text' && 
+              questiontype[tabContent] == 'Text' && 
                <div className='tabsContent'>
-                  { qs[tabContent] }
+                  { questions[tabContent] }
                   <br></br>
-                  <input type="text" name="{qs[tabContent]}"/>
+                  <input type="text" name="{questions[tabContent]}"/>
               </div>
           }
        
           {
-              qtypes[tabContent] == 'Radio'  && qoptions[tabContent].split(",").map(q=>
+              questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>
               <div>
                   <input type="radio" id="gender" name="gender" value={q}/>{q}
               </div>)
           }
             
           {
-              qtypes[tabContent]  == 'Date'  && 
+              questiontype[tabContent]  == 'Date'  && 
               <div>
               <label for="date">Date of Birth:</label>
               <input type="date" id="date" name="date"></input>
@@ -65,12 +66,12 @@ return (
           }
 
           {
-              qtypes[tabContent]  == 'Select'  &&
+              questiontype[tabContent]  == 'Select'  &&
               <div className='tabsContent'>
                   <label for="category">Choose a category:</label>
-                  <select name="category" value={qs[tabContent]}>
+                  <select name="category" value={questions[tabContent]}>
                       {
-                          qoptions[tabContent].split(",").map((e, key) => 
+                          questionoptions[tabContent].split(",").map((e, key) => 
                               {
                               return <option key={key} value={e}>{e}</option>;
                               }
@@ -78,12 +79,12 @@ return (
                   </select>
               </div>} 
 
-        {tabContent === qlen && <Social setTab={setTab(2)} />}
+        {tabContent === questionslength && <Social setTab={setTab(2)} />}
         {tabContent === -1 && <Social setTabContent={setTabContent(0)} />}
 
         <div className="footer">
-          <button onClick={() => {setTabContent(tabContent +1), setProgres(progress + (100/qlen))}}>Go Next</button>
-          <div>{tabContent < qlen && tabContent > 0 &&  <button onClick={() => {setTabContent(tabD -1)}}>Go Back</button>}</div>
+          <button onClick={() => {setTabContent(tabContent +1), setProgres(progress + (100/questionslength))}}>Go Next</button>
+          <div>{tabContent < questionslength && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
         </div>
     </div>
   )

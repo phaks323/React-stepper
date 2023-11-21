@@ -3,7 +3,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 
 const Account = ({ setTab }) => {
     const [tabContent, setTabContent] = useState(0)
-    const [qlen, setQlen] = useState()
+    const [questionslength, setQlen] = useState()
     const [qs, setQs] = useState("")
     const [qtypes, setQtypes] = useState("")
     const [qoptions, setQoptions] = useState("")
@@ -42,12 +42,13 @@ const Account = ({ setTab }) => {
             <ProgressBar completed={progress} label='ss' />
             
             {
-                qtypes[tabContent] == 'Text' && 
-                 <div className='tabsContent'>
-                    { qs[tabContent] }
-                    <br></br>
-                    <input type="text" name="{qs[tabContent]}"/>
-                </div>
+                qtypes[tabContent] == 'Text' && qoptions[tabContent].split(",").map(q=>
+
+                <div>
+                    <br></br><br></br><br></br>
+                    {q}
+                    <input type="text" name={q}/>
+                </div>)
             }
          
             {
@@ -80,7 +81,7 @@ const Account = ({ setTab }) => {
                 </div>} 
                 
             {
-                tabContent === qlen && <Account setTab={setTab(1)} />
+                tabContent === questionslength && <Account setTab={setTab(1)} />
             }
 
             {
@@ -88,9 +89,9 @@ const Account = ({ setTab }) => {
             }
 
             <div className="footer">
-                <button onClick={() => {setTabContent(tabContent +1), setProgres(progress + (100/qlen))}}>Go next</button>
-                <div>{tabContent < qlen && tabContent > 0 &&  
-                <button onClick={() => {setTabContent(tabContent -1)}}>Go Back</button>}</div>
+                <button onClick={() => {setTabContent(tabContent +1), setProgres(progress + (100/questionslength))}}>Go next</button>
+                <div>{tabContent < questionslength && tabContent > 0 &&  
+                <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
             </div>
 
         </div>

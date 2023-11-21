@@ -1,9 +1,10 @@
 import React, { useState , useEffect} from 'react'
 import ProgressBar from "@ramonak/react-progress-bar";
 
+
 const Personal = ({setTab}) => {
     const [tabContent, setTabContent] = useState(0)
-    const [qlen, setQlen] = useState()
+    const [questionslength, setQlen] = useState()
     const [qs, setQs] = useState("")
     const [qtypes, setQtypes] = useState("")
     const [qoptions, setQoptions] = useState("")
@@ -67,8 +68,8 @@ const Personal = ({setTab}) => {
             {
                 qtypes[tabContent]  == 'Select'  &&
                 <div className='tabsContent'>
-                    <label for="category">Choose a category:</label>
-                    <select name="category" value={qs[tabContent]}>
+                    <label for="category2">Choose a category:</label>
+                    <select name="category2" value={qs[tabContent]}>
                         {
                             qoptions[tabContent].split(",").map((e, key) => 
                                 {
@@ -77,13 +78,13 @@ const Personal = ({setTab}) => {
                         )}
                     </select>
                 </div>} 
-        {tabContent === qlen && <Personal setTab={setTab(3)} />}
+        {tabContent === questionslength && <Personal setTab={setTab(3)} />}
         {tabContent === -1 && <Personal setTabContent={setTabContent(0)} />}
 
         <div className="footer">
           <button onClick={() => setTabContent(tabContent +1)}>Go Next</button>
-          <div>{tabContent < qlen && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress + (100/qlen))}}>Go Back</button>}</div>
-          <div>{tabContent === qlen-1 &&  <button onClick={() => {setTabContent(3)}}>Finish</button>}</div>
+          <div>{tabContent < questionslength && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress + (100/questionslength))}}>Go Back</button>}</div>
+          <div>{tabContent === questionslength-1 &&  <button onClick={() => {setTabContent(3), setProgres(progress - (100/questionslength))}}>Finish</button>}</div>
         </div>
 
     </div>
