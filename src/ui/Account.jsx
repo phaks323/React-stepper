@@ -47,7 +47,7 @@ const Account = ({ setTab }) => {
                 <div>
                     <br></br><br></br><br></br>
                     {q}
-                    <input type="text" name={q}/>
+                    <input type="text" name={q} onChange={(e) => setName(e.target.value)}/>
                 </div>)
             }
          
