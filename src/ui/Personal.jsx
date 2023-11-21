@@ -73,6 +73,7 @@ const Personal = ({setTab}) => {
                         {
                             qoptions[tabContent].split(",").map((e, key) => 
                                 {
+                                console.log(qoptions[tabContent].split(","))
                                 return <option key={key} value={e}>{e}</option>;
                                 }
                         )}
@@ -86,7 +87,6 @@ const Personal = ({setTab}) => {
           <div>{tabContent < questionslength && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress + (100/questionslength))}}>Go Back</button>}</div>
           <div>{tabContent === questionslength-1 &&  <button onClick={() => {setTabContent(3), setProgres(progress - (100/questionslength))}}>Finish</button>}</div>
         </div>
-
     </div>
   )
 }
