@@ -4,9 +4,9 @@ import ProgressBar from "@ramonak/react-progress-bar";
 const Account = ({ setTab }) => {
     const [tabContent, setTabContent] = useState(0)
     const [questionslength, setQlen] = useState()
-    const [qs, setQs] = useState("")
-    const [qtypes, setQtypes] = useState("")
-    const [qoptions, setQoptions] = useState("")
+    const [questions, setQs] = useState("")
+    const [questiontype, setQtypes] = useState("")
+    const [questionoptions, setQoptions] = useState("")
     const [progress, setProgres] = useState(0)
          
     useEffect(() => {
@@ -42,7 +42,7 @@ const Account = ({ setTab }) => {
             <ProgressBar completed={progress} label='ss' />
             
             {
-                qtypes[tabContent] == 'Text' && qoptions[tabContent].split(",").map(q=>
+                questiontype[tabContent] == 'Text' && questionoptions[tabContent].split(",").map(q=>
 
                 <div>
                     <br></br><br></br><br></br>
@@ -52,14 +52,14 @@ const Account = ({ setTab }) => {
             }
          
             {
-                qtypes[tabContent] == 'Radio'  && qoptions[tabContent].split(",").map(q=>
+                questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>
                 <div>
                     <input type="radio" id="gender" name="gender" value={q} onChange={(e) => setName(e.target.value)}/>{q}
                 </div>)
             }
               
             {
-                qtypes[tabContent]  == 'Date'  && 
+                questiontype[tabContent]  == 'Date'  && 
                 <div>
                 <label htmlFor="date">Date of Birth:</label>
                 <input type="date" id="date" name="date" onChange={(e) => setName(e.target.value)}></input>
@@ -67,12 +67,12 @@ const Account = ({ setTab }) => {
             }
 
             {
-                qtypes[tabContent]  == 'Select'  &&
+                questiontype[tabContent]  == 'Select'  &&
                 <div className='tabsContent'>
                     <label htmlFor="category">Choose a category:</label>
-                    <select name="category" value={qs[tabContent]}>
+                    <select name="category" value={questions[tabContent]}>
                         {
-                            qoptions[tabContent].split(",").map((e, key) => 
+                            questionoptions[tabContent].split(",").map((e, key) => 
                                 {
                                 return <option key={key} value={e} onChange={(e) => setName(e.target.value)}>{e}</option>;
                                 }

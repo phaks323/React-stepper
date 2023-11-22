@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import {
     CitySelect,
     CountrySelect,
@@ -38,7 +37,7 @@ import {
           placeHolder="Select City"
         />
         <div className="footer">
-            <div>{<button onClick={() => {setTab(4)}}>Finish</button>}</div>
+            {/* <div>{<button onClick={() => {setTab(4)}}>Finish</button>}</div> */}
         </div>
       </div>
       

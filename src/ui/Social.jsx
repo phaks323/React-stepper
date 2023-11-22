@@ -20,18 +20,18 @@ const Social = ({setTab}) => {
 
           var ques=[];
           var qtype=[];
-          var questionoptions = []
+          var qoptions = []
 
           for(var i=0;i<data.data.length;i++){
               ques.push(data.data[i].attributes.question);
               qtype.push(data.data[i].attributes.type);
-              questionoptions.push(data.data[i].attributes.option);
+              qoptions.push(data.data[i].attributes.option);
           }
           setQs(ques)
           setQtypes(qtype)
-          setQoptions(qtype)
+          setQoptions(qoptions)
 
-          console.log(questionoptions);
+          console.log(qoptions);
 
           return data
       }
@@ -41,14 +41,15 @@ return (
   <div className='tabsContent'>
        <ProgressBar completed={progress} label='ccc' />
           
-          {
-              questiontype[tabContent] == 'Text' && 
-               <div className='tabsContent'>
-                  { questions[tabContent] }
-                  <br></br>
-                  <input type="text" name="{questions[tabContent]}"/>
-              </div>
-          }
+       {
+                questiontype[tabContent] == 'Text' && questionoptions[tabContent].split(",").map(q=>
+
+                <div>
+                    <br></br><br></br><br></br>
+                    {q}
+                    <input type="text" name={q} onChange={(e) => setName(e.target.value)}/>
+                </div>)
+            }
        
           {
               questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>

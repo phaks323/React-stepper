@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import Account from './ui/Account'
-import Personal from './ui/Personal'
-import Social from './ui/Social'
-import Finish from './ui/Finish'
+// import Account from './ui/Account'
+// import Personal from './ui/Personal'
+// import Social from './ui/Social'
+// import Finish from './ui/Finish'
+// import "./ui/Account"
 
 const Portfolio = ({setUser}) => {
 

@@ -5,9 +5,9 @@ import ProgressBar from "@ramonak/react-progress-bar";
 const Personal = ({setTab}) => {
     const [tabContent, setTabContent] = useState(0)
     const [questionslength, setQlen] = useState()
-    const [qs, setQs] = useState("")
-    const [qtypes, setQtypes] = useState("")
-    const [qoptions, setQoptions] = useState("")
+    const [questions, setQs] = useState("")
+    const [questiontype, setQtypes] = useState("")
+    const [questionoptions, setQoptions] = useState("")
     const [progress, setProgres] = useState(0)
          
     useEffect(() => {
@@ -29,7 +29,7 @@ const Personal = ({setTab}) => {
             }
             setQs(ques)
             setQtypes(qtype)
-            setQoptions(qtype)
+            setQoptions(qoptions)
 
             console.log(qoptions);
 
@@ -42,23 +42,24 @@ const Personal = ({setTab}) => {
          <ProgressBar completed={progress} label='zzz' />
             
             {
-                qtypes[tabContent] == 'Text' && 
-                 <div className='tabsContent'>
-                    { qs[tabContent] }
-                    <br></br>
-                    <input type="text" name="{qs[tabContent]}"/>
-                </div>
+                questiontype[tabContent] == 'Text' && questionoptions[tabContent].split(",").map(q=>
+
+                <div>
+                    <br></br><br></br><br></br>
+                    {q}
+                    <input type="text" name={q} onChange={(e) => setName(e.target.value)}/>
+                </div>)
             }
          
             {
-                qtypes[tabContent] == 'Radio'  && qoptions[tabContent].split(",").map(q=>
+                questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>
                 <div>
                     <input type="radio" id="gender" name="gender" value={q} onChange={(e) => setName(e.target.value)}/>{q}
                 </div>)
             }
               
             {
-                qtypes[tabContent]  == 'Date'  && 
+                questiontype[tabContent]  == 'Date'  && 
                 <div>
                 <label htmlFor="date">Date of Birth:</label>
                 <input type="date" id="date" name="date" onChange={(e) => setName(e.target.value)}></input>
@@ -66,14 +67,14 @@ const Personal = ({setTab}) => {
             }
 
             {
-                qtypes[tabContent]  == 'Select'  &&
+                questiontype[tabContent]  == 'Select'  &&
                 <div className='tabsContent'>
                     <label htmlFor="category2">Choose a category:</label>
-                    <select name="category2" value={qs[tabContent]}>
+                    <select name="category2" value={questions[tabContent]}>
                         {
-                            qoptions[tabContent].split(",").map((e, key) => 
+                            questionoptions[tabContent].split(",").map((e, key) => 
                                 {
-                                console.log(qoptions[tabContent].split(","))
+                                console.log(questionoptions[tabContent].split(","))
                                 return <option key={key} value={e} onChange={(e) => setName(e.target.value)}>{e}</option>;
                                 }
                         )}
