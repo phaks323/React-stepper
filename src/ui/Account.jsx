@@ -54,6 +54,7 @@ const Account = ({ setTab }) => {
             {
                 questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>
                 <div>
+                    <br></br><br></br><br></br>
                     <input type="radio" id="gender" name="gender" value={q} onChange={(e) => setName(e.target.value)}/>{q}
                 </div>)
             }
@@ -61,15 +62,17 @@ const Account = ({ setTab }) => {
             {
                 questiontype[tabContent]  == 'Date'  && 
                 <div>
-                <label htmlFor="date">Date of Birth:</label>
+                    <br></br><br></br><br></br>
+                <label htmlFor="date">{questions[tabContent]}</label>
                 <input type="date" id="date" name="date" onChange={(e) => setName(e.target.value)}></input>
                 </div>
             }
 
             {
                 questiontype[tabContent]  == 'Select'  &&
-                <div className='tabsContent'>
-                    <label htmlFor="category">Choose a category:</label>
+                <div>
+                    <br></br><br></br><br></br>
+                    <label htmlFor="category">{questions[tabContent]}</label>
                     <select name="category" value={questions[tabContent]}>
                         {
                             questionoptions[tabContent].split(",").map((e, key) => 
