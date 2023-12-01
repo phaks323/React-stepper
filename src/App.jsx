@@ -25,8 +25,8 @@ const App = () => {
 
         <div className="myTabsContent">
           {tab === 0 && <Account setTab={setTab} />}
-          {tab === 1 && <Social setTab={setTab} />}
-          {tab === 2 && <Personal setTab={setTab} />}
+          {tab === 1 && <Personal setTab={setTab} />}
+          {tab === 2 && <Social setTab={setTab} />}
           {tab === 3 && <Finish setTab={setTab} />}
           {tab === 4 && <Portfolio setTab={setTab} />}
 

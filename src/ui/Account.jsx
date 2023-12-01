@@ -2,12 +2,23 @@ import React, { useState , useEffect} from 'react'
 import ProgressBar from "@ramonak/react-progress-bar";
 
 const Account = ({ setTab }) => {
+    const [personaldetails, setPersonalDetails] = useState({})
+    const [P, setP] = useState('')
     const [tabContent, setTabContent] = useState(0)
     const [questionslength, setQlen] = useState()
     const [questions, setQs] = useState("")
     const [questiontype, setQtypes] = useState("")
     const [questionoptions, setQoptions] = useState("")
     const [progress, setProgres] = useState(0)
+
+
+    function handleChange(evt) {
+        const value = evt.target.value;
+        setPersonalDetails({
+          ...personaldetails,
+          [evt.target.name]: value
+        });
+      }
          
     useEffect(() => {
         // 
@@ -37,17 +48,18 @@ const Account = ({ setTab }) => {
         getQs();
        }, [])
     return (
-        
         <div className='tabsContent'>
             <ProgressBar completed={progress} label='ss' />
-            
+            {questions[tabContent]}
             {
+                
                 questiontype[tabContent] == 'Text' && questionoptions[tabContent].split(",").map(q=>
 
                 <div>
                     <br></br><br></br><br></br>
                     {q}
-                    <input type="text" name={q} onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" name={q} value={personaldetails.detail}
+                            onChange={handleChange}/>
                 </div>)
             }
          
@@ -55,7 +67,8 @@ const Account = ({ setTab }) => {
                 questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>
                 <div>
                     <br></br><br></br><br></br>
-                    <input type="radio" id="gender" name="gender" value={q} onChange={(e) => setName(e.target.value)}/>{q}
+                    <input type="radio" id="gender" name="gender" value={personaldetails.detail}
+                            onChange={handleChange}/>{q}
                 </div>)
             }
               
@@ -64,10 +77,11 @@ const Account = ({ setTab }) => {
                 <div>
                     <br></br><br></br><br></br>
                 <label htmlFor="date">{questions[tabContent]}</label>
-                <input type="date" id="date" name="date" onChange={(e) => setName(e.target.value)}></input>
+                <input type="date" id="date" name="date" value={personaldetails.detail}
+                            onChange={handleChange}></input>
                 </div>
             }
-
+                
             {
                 questiontype[tabContent]  == 'Select'  &&
                 <div>
@@ -77,25 +91,24 @@ const Account = ({ setTab }) => {
                         {
                             questionoptions[tabContent].split(",").map((e, key) => 
                                 {
-                                return <option key={key} value={e} onChange={(e) => setName(e.target.value)}>{e}</option>;
+                                return <option key={key} value={personaldetails.detail}
+                                onChange={handleChange}>{e}</option>;
                                 }
                         )}
                     </select>
-                </div>} 
+                </div>
+            } 
                 
-            {
-                tabContent === questionslength && <Account setTab={setTab(1)} />
-            }
-
-            {
-                tabContent === -1 && <Account setTabContent={setTabContent(0)} />
-            }
+            {tabContent === questionslength && <Account setP={setPersonalDetails} setTab={setTab(1)}/>}
+            {tabContent === -1 && <Account setTabContent={setTabContent(0)} />}
 
             <div className="footer">
                 <button onClick={() => {setTabContent(tabContent +1), setProgres(progress + (100/questionslength))}}>Go next</button>
-                <div>{tabContent < questionslength && tabContent > 0 &&  
-                <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
-            </div>
+                <div>
+                        {tabContent < questionslength && tabContent > 0 &&  
+                    <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
+                </div>
+                {console.log(personaldetails)}
 
         </div>
     )

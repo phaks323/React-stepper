@@ -2,13 +2,24 @@ import React, { useState , useEffect} from 'react'
 import ProgressBar from "@ramonak/react-progress-bar";
 
 
-const Personal = ({setTab}) => {
+const Personal = ({setTab,setP}) => {
+    
+    const [contactdetails, setContactDetails] = useState({})
     const [tabContent, setTabContent] = useState(0)
     const [questionslength, setQlen] = useState()
     const [questions, setQs] = useState("")
     const [questiontype, setQtypes] = useState("")
     const [questionoptions, setQoptions] = useState("")
     const [progress, setProgres] = useState(0)
+
+
+    function handleChange(evt) {
+        const value = evt.target.value;
+        setContactDetails({
+          ...contactdetails,
+          [evt.target.name]: value
+        });
+      }
          
     useEffect(() => {
         // 
@@ -40,14 +51,17 @@ const Personal = ({setTab}) => {
   return (
     <div className='tabsContent'>
          <ProgressBar completed={progress} label='zzz' />
-            
+         {questions[tabContent]}
+
             {
+
                 questiontype[tabContent] == 'Text' && questionoptions[tabContent].split(",").map(q=>
 
                 <div>
                     <br></br><br></br><br></br>
                     {q}
-                    <input type="text" name={q} onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" name={q} value={contactdetails.lastname}
+                            onChange={handleChange}/>
                 </div>)
             }
          
@@ -55,7 +69,8 @@ const Personal = ({setTab}) => {
                 questiontype[tabContent] == 'Radio'  && questionoptions[tabContent].split(",").map(q=>
                 <div>
                     <br></br><br></br><br></br>
-                    <input type="radio" id="gender" name="gender" value={q} onChange={(e) => setName(e.target.value)}/>{q}
+                    <input type="radio" id="gender" name="gender" value={contactdetails.lastname}
+          onChange={handleChange}/>{q}
                 </div>)
             }
               
@@ -64,7 +79,8 @@ const Personal = ({setTab}) => {
                 <div>
                     <br></br><br></br><br></br>
                 <label htmlFor="date">{questions[tabContent]}</label>
-                <input type="date" id="date" name="date" onChange={(e) => setName(e.target.value)}></input>
+                <input type="date" id="date" name="date" value={contactdetails.lastName}
+          onChange={handleChange}></input>
                 </div>
             }
 
@@ -78,7 +94,8 @@ const Personal = ({setTab}) => {
                             questionoptions[tabContent].split(",").map((e, key) => 
                                 {
                                 console.log(questionoptions[tabContent].split(","))
-                                return <option key={key} value={e} onChange={(e) => setName(e.target.value)}>{e}</option>;
+                                return <option key={key} value={contactdetails.lastName}
+                                onChange={handleChange}>{e}</option>;
                                 }
                         )}
                     </select>
@@ -88,8 +105,13 @@ const Personal = ({setTab}) => {
 
         <div className="footer">
           <button onClick={() => {setTabContent(tabContent +1),setProgres(progress + (100/questionslength))}}>Go Next</button>
-          <div>{tabContent < questionslength && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
+          <div>
+            {tabContent < questionslength && tabContent > 0 &&
+            <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}
         </div>
+        </div>
+        {console.log(contactdetails)}
+
     </div>
   )
 }

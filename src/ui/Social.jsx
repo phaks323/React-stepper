@@ -40,7 +40,8 @@ const Social = ({setTab}) => {
 return (
   <div className='tabsContent'>
        <ProgressBar completed={progress} label='ccc' />
-          
+       {questions[tabContent]}
+
        {
                 questiontype[tabContent] == 'Text' && questionoptions[tabContent].split(",").map(q=>
 
@@ -88,8 +89,10 @@ return (
 
         <div className="footer">
           <button onClick={() => {setTabContent(tabContent +1), setProgres(progress + (100/questionslength))}}>Go Next</button>
-          <div>{tabContent < questionslength && tabContent > 0 &&  <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
-        </div>
+          <div>
+            {tabContent < questionslength && tabContent > 0 &&
+            <button onClick={() => {setTabContent(tabContent -1), setProgres(progress - (100/questionslength))}}>Go Back</button>}</div>
+          </div>
     </div>
   )
 }
