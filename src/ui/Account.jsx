@@ -87,12 +87,12 @@ const Account = ({ setTab }) => {
                 <div>
                     <br></br><br></br><br></br>
                     <label htmlFor="category">{questions[tabContent]}</label>
-                    <select name="category" value={questions[tabContent]}>
+                    <select name="category" value={questions[tabContent]} onChange={handleChange}>
                         {
                             questionoptions[tabContent].split(",").map((e, key) => 
                                 {
                                 return <option key={key} value={personaldetails.detail}
-                                onChange={handleChange}>{e}</option>;
+                                >{e}</option>;
                                 }
                         )}
                     </select>
